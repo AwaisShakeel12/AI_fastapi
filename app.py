@@ -34,7 +34,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-GOOGLE_API_KEY = ''
+GOOGLE_API_KEY = os.environ.get('GOOGLE_API_KEY')
 api_key = GOOGLE_API_KEY
 llm = ChatGoogleGenerativeAI(model='gemini-1.5-flash', api_key=api_key)
 
@@ -197,4 +197,5 @@ async def chat_with_agent(chat_message: ChatMessage): # Use the ChatMessage mode
 
 if __name__ == "__main__":
     import uvicorn
+
     uvicorn.run(app, host="0.0.0.0", port=8000)
